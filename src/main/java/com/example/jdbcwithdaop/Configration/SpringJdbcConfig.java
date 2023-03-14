@@ -3,7 +3,6 @@ package com.example.jdbcwithdaop.Configration;
 import com.example.jdbcwithdaop.dao.UserDao;
 import com.example.jdbcwithdaop.dao.base.Dao;
 import com.example.jdbcwithdaop.dao.impl.UserDaoImpl;
-import com.example.jdbcwithdaop.dao.impl.UserDaoImpl2;
 import com.example.jdbcwithdaop.model.User;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -32,9 +31,5 @@ public class SpringJdbcConfig {
     @Bean
     public UserDao userDao(){
         return new UserDaoImpl(mysqlDataSource());
-    }
-    @Bean
-    public Dao<User> userDao2(){
-        return new UserDaoImpl2(mysqlDataSource());
     }
 }
