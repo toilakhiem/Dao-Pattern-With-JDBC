@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 @Data
 @AllArgsConstructor
@@ -13,5 +14,5 @@ public class User {
     private String id;
     private String user_name;
     private String password;
-    private Double price;
+    private BigDecimal price;
 }
