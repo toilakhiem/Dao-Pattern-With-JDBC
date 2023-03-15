@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class User {
     private String id;
-    private String user_name;
+    private String userName;
     private String password;
     private BigDecimal price;
 }

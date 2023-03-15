@@ -10,7 +10,6 @@ public class JdbcWithDaoPApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(JdbcWithDaoPApplication.class, args);
-
     }
 
 }

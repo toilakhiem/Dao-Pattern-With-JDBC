@@ -9,13 +9,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.SQLException;
+
 @RestController
 @RequestMapping("banking")
 public class BankingController {
     @Autowired
     private UserDao userDao;
     @PostMapping
-    ResponseEntity<?> bank(@RequestBody BankingRequest request){
+    ResponseEntity<?> bank(@RequestBody BankingRequest request) throws SQLException {
         userDao.bank(request.getFromUsername(), request.getToUsername(), request.getPrice());
         return ResponseEntity.ok("chuyen tien thanh cong");
     }
