@@ -20,8 +20,7 @@ import static com.example.jdbcwithdaop.constant.JdbcWithDaoPatternConstant.Query
 
 @Slf4j
 public class UserDaoImpl implements UserDao {
-
-    private Connection connection;
+    private static Connection connection;
 
     public UserDaoImpl(Connection connection) {
         this.connection = connection;
@@ -146,18 +145,18 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void bank(String fromUser, String toUser, BigDecimal price) throws SQLException {
         try {
-            // tru tien nguoi chuyen
             String sql = String.format(DECREASE_PRICE_OF_SEND_USER,price,fromUser);
             connection.setAutoCommit(false);
             Statement statement = connection.createStatement();
+            // tru tien nguoi chuyen
             statement.execute(sql);
-            // tang tien cho nguoi nhan
             sql = String.format(INCREASE_PRICE_OF_RECEIVED_USER,price,toUser);
+            // tang tien cho nguoi nhan
             statement.execute(sql);
-            log.info("(bank) {} bank to {} {} successfully", fromUser, fromUser, price);
+            log.info("(bank) {} bank to {} {} successfully", fromUser, toUser, price);
             connection.commit();
         } catch (SQLException e) {
-            log.info("(bank) {} bank to {} {} failed", fromUser, fromUser, price);
+            log.info("(bank) {} bank to {} {} failed", fromUser, toUser, price);
             connection.rollback();
         }
     }
