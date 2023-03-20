@@ -27,12 +27,6 @@
             <artifactId>mysql-connector-j</artifactId>
             <scope>runtime</scope>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
-            <version>6.0.6</version>
-        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -49,11 +43,10 @@
             <artifactId>HikariCP</artifactId>
             <version>3.4.5</version>
         </dependency>
-        <!--    MYSQL CONNECTOR    -->
+        <!-- VALIDATION -->
         <dependency>
-            <groupId>com.mysql</groupId>
-            <artifactId>mysql-connector-j</artifactId>
-            <version>8.0.32</version>
+            <artifactId>hibernate-validator</artifactId>
+            <groupId>org.hibernate.validator</groupId>
         </dependency>
 
     </dependencies>

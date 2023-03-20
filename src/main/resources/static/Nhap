@@ -1,0 +1,106 @@
+  Using jdbc template
+        @Override
+    public User get(String id) {
+        String sql = "SELECT * FROM users WHERE id=" + id;
+        return connection.(sql, new ResultSetExtractor<User>() {
+
+            @Override
+            public User extractData(ResultSet rs) throws SQLException,
+                    DataAccessException {
+                if (rs.next()) {
+                    User user = new User();
+                    user.setId(rs.getString("id"));
+                    user.setUser_name(rs.getString("user_name"));
+                    user.setPassword(rs.getString("password"));
+                    user.setPrice(rs.getBigDecimal("price"));
+                    return user;
+                }
+                return null;
+            }
+        });
+    }
+
+    @Override
+    public List<User> getAll() {
+        String sql = "SELECT * FROM users";
+        List<User> users = jdbcTemplate.query(sql, new RowMapper<User>() {
+            @Override
+            public User mapRow(ResultSet rs, int rowNum) throws SQLException {
+                User user = new User();
+
+                user.setId(rs.getString("id"));
+                user.setUser_name(rs.getString("user_name"));
+                user.setPassword(rs.getString("password"));
+                user.setPrice(rs.getBigDecimal("price"));
+
+                return user;
+            }
+        });
+
+        return users;
+    }
+
+    @Override
+    public User save(User user) {
+        BigDecimal price = user.getPrice() == null ? BigDecimal.valueOf(0) : user.getPrice();
+        user.setPrice(BigDecimal.valueOf(1000));
+        String sql = "INSERT INTO users (id, user_name, password, price)"
+                + " VALUES (?, ?, ?, ?)";
+        jdbcTemplate.update(sql, user.getId(), user.getUser_name(), user.getPassword(), user.getPrice());
+        log.info("save user successfully");
+
+        sql = "SELECT * FROM users WHERE id=" + user.getId();
+        return jdbcTemplate.query(sql, new ResultSetExtractor<User>() {
+
+            @Override
+            public User extractData(ResultSet rs) throws SQLException,
+                    DataAccessException {
+                if (rs.next()) {
+                    User user = new User();
+                    user.setId(rs.getString("id"));
+                    user.setUser_name(rs.getString("user_name"));
+                    user.setPassword(rs.getString("password"));
+                    user.setPrice(rs.getBigDecimal("price"));
+                    return user;
+                }
+                return null;
+            }
+        });
+    }
+
+
+    @Override
+    public User update(User user) {
+        String sql = "UPDATE users SET id=?, user_name=?, password=?, "
+                + "price=? WHERE id=?";
+
+        jdbcTemplate.update(sql, user.getId(), user.getUser_name(),
+                user.getPassword(), user.getPrice(), user.getId());
+        log.info("update user successfully");
+
+        sql = "SELECT * FROM users WHERE id=" + user.getId();
+        return jdbcTemplate.query(sql, new ResultSetExtractor<User>() {
+
+            @Override
+            public User extractData(ResultSet rs) throws SQLException,
+                    DataAccessException {
+                if (rs.next()) {
+                    User user = new User();
+                    user.setId(rs.getString("id"));
+                    user.setUser_name(rs.getString("user_name"));
+                    user.setPassword(rs.getString("password"));
+                    user.setPrice(rs.getBigDecimal("price"));
+                    return user;
+                }
+                return null;
+            }
+        });
+    }
+
+    @Override
+    public void delete(String id) {
+        String sql = "DELETE FROM users WHERE users.id=?";
+        jdbcTemplate.update(sql, id);
+        log.info("delete user successfully");
+    }
+*/
