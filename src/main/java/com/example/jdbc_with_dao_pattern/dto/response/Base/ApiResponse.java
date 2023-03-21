@@ -1,4 +1,4 @@
-package com.example.jdbc_with_dao_pattern.dto.response;
+package com.example.jdbc_with_dao_pattern.dto.response.Base;
 
 import com.example.jdbc_with_dao_pattern.utils.DateUtils;
 import lombok.AllArgsConstructor;

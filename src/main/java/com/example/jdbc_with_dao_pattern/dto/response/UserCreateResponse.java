@@ -12,11 +12,13 @@ public class UserCreateResponse {
     private String id;
     private String userName;
     private String password;
+    private Long price;
     public static UserCreateResponse from(User user){
         var userCreateResponse = new UserCreateResponse();
         userCreateResponse.id = user.getId();
         userCreateResponse.userName = user.getUserName();
         userCreateResponse.password = user.getPassword();
+        userCreateResponse.price = user.getPrice();
         return userCreateResponse;
     }
 }

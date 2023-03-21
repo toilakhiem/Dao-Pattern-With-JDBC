@@ -1,6 +1,7 @@
 package com.example.jdbc_with_dao_pattern.configration;
 
-import com.example.jdbc_with_dao_pattern.dao.impl.UserDaoImpl;
+import com.example.jdbc_with_dao_pattern.service.impl.UserDaoImpl;
+import com.example.jdbc_with_dao_pattern.validation.UserValidation;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -10,7 +11,7 @@ import java.sql.SQLException;
 @Configuration
 @ComponentScan(basePackages = "com.example.jdbc_with_dao_pattern")
 /* Trong trường hợp muốn tùy chỉnh cấu hình cho Spring Boot chỉ tìm kiếm các bean trong một package nhất định */
-public class SpringJdbcConfiguration {
+public class WebConfiguration {
     //    @Bean
 //    public DataSource mysqlDataSource(){
 //        DriverManagerDataSource dataSource =  new DriverManagerDataSource();
@@ -29,8 +30,13 @@ public class SpringJdbcConfiguration {
 //    public UserDao userDao() throws SQLException {
 //        return new UserDaoImpl(mysqlDataSource());
 //    }
+    //khoi tao kieu nay ton connection
     @Bean
     public UserDaoImpl userDao() throws SQLException {
-        return new UserDaoImpl(HiakriCPDataSource.getInstance().getConnection());
+        return new UserDaoImpl(HikariCPConfiguration.getInstance().getDataSource());
+    }
+    @Bean
+    public UserValidation userValidation() {
+        return new UserValidation(HikariCPConfiguration.getInstance().getDataSource());
     }
 }

@@ -3,13 +3,23 @@ package com.example.jdbc_with_dao_pattern.configration;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-
 import static com.example.jdbc_with_dao_pattern.constant.JdbcWithDaoPatternConstant.ConfigConstant.*;
 
-public class HiakriCPDataSource {
-    private static HikariDataSource hikariDataSource;
+public class HikariCPConfiguration {
+    //region Singleton
+    // static global HiakriCPDataSource
+    private static HikariCPConfiguration instance = new HikariCPConfiguration();
+    //private constructor
+    private HikariCPConfiguration() {
+    }
+    // Static factory method
+    public static HikariCPConfiguration getInstance(){
+        if (instance == null) {
+            instance = new HikariCPConfiguration();
+        }
+        return instance;
+    }
+    //endregion
     static {
         HikariConfig hikariConfig = new HikariConfig();
         hikariConfig.setDriverClassName(DRIVER_CLASS_NAME);
@@ -23,16 +33,8 @@ public class HiakriCPDataSource {
         hikariConfig.setConnectionTimeout(3000);
         hikariDataSource = new HikariDataSource(hikariConfig);
     }
-
-    private HiakriCPDataSource() {
-    }
-
-    public static HikariDataSource getInstance() {
+    private static HikariDataSource hikariDataSource;
+    public HikariDataSource getDataSource() {
         return hikariDataSource;
     }
-
-    public static Connection connection() throws SQLException {
-        return hikariDataSource.getConnection();
-    }
-
 }

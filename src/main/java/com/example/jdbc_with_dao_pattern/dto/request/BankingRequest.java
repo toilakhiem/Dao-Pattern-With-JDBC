@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 @Data
 @NoArgsConstructor
 public class BankingRequest {
-    @NotEmpty @NotNull
+    @NotEmpty(message = "thong bao cai dcmm") @NotNull
     private String fromUsername;
     @NotEmpty @NotNull
     private String toUsername;

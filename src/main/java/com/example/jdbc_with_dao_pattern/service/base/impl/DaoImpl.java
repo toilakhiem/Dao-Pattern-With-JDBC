@@ -1,7 +1,7 @@
-package com.example.jdbc_with_dao_pattern.dao.base.impl;
+package com.example.jdbc_with_dao_pattern.service.base.impl;
 
 
-import com.example.jdbc_with_dao_pattern.dao.base.Dao;
+import com.example.jdbc_with_dao_pattern.service.base.Dao;
 
 import java.util.List;
 

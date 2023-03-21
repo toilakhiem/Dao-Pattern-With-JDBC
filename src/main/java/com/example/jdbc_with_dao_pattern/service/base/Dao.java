@@ -1,4 +1,4 @@
-package com.example.jdbc_with_dao_pattern.dao.base;
+package com.example.jdbc_with_dao_pattern.service.base;
 
 import java.util.List;
 

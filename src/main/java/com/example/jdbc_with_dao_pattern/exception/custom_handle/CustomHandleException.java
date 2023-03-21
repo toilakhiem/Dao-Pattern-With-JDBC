@@ -1,4 +1,4 @@
-package com.example.jdbc_with_dao_pattern.exception.CustomHandleException;
+package com.example.jdbc_with_dao_pattern.exception.custom_handle;
 
 import com.example.jdbc_with_dao_pattern.dto.response.ErrorResponse;
 import com.example.jdbc_with_dao_pattern.exception.BaseException;
@@ -16,7 +16,10 @@ import java.util.Map;
 
 @Slf4j
 @ControllerAdvice
+// ten class phai la danh tu
+// ten package cang ngan cang tot
 public class CustomHandleException {
+    private final String HANDLE_VALIDATION_EXCEPTION = "HandleValidationExceptions";
     @ExceptionHandler(BaseException.class)
     public ResponseEntity<ErrorResponse> handleException(BaseException ex){
         log.info("(handleException) ex : {}",ex.getCode());
@@ -47,7 +50,7 @@ public class CustomHandleException {
         return new ResponseEntity<>(
                 ErrorResponse.of(
                         HttpStatus.BAD_REQUEST.value(),
-                        "com.example.jdbc_with_dao_pattern.core_api_exception.custom_handle.CustomHandleException",
+                        HANDLE_VALIDATION_EXCEPTION,
                         errors),
                 HttpStatus.BAD_REQUEST);
     }
