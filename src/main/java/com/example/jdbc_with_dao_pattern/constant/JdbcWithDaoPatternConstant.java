@@ -17,7 +17,7 @@ public class JdbcWithDaoPatternConstant {
         public static final String INCREASE_PRICE_OF_RECEIVED_USER = "UPDATE users SET price = price + %s where user_name = '%s'";
         public static final String DECREASE_PRICE_OF_SEND_USER = "UPDATE users SET price = price - %s where user_name = '%s'";
         public static final String EXIST_BY_USER_NAME = "SELECT * FROM users where users.user_name = '%s'";
-        public static final String FIND_BY_ID = "SELECT * FROM users where users.id = '%s'";
+        public static final String EXIST_BY_ID = "SELECT * FROM users where users.id = '%s'";
         public static final String FIND_BY_USERNAME = "SELECT * FROM users where users.user_name = '%s'";
     }
     public static class ExceptionRespoinse{

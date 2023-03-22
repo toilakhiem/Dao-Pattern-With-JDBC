@@ -1,11 +1,14 @@
-package com.example.jdbc_with_dao_pattern.configration;
+package com.example.jdbc_with_dao_pattern.dao;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+
 import static com.example.jdbc_with_dao_pattern.constant.JdbcWithDaoPatternConstant.ConfigConstant.*;
 
-public class HikariCPConfiguration {
+public class  HikariCPConfiguration {
     //region Singleton
     // static global HiakriCPDataSource
     private static HikariCPConfiguration instance = new HikariCPConfiguration();
@@ -34,7 +37,10 @@ public class HikariCPConfiguration {
         hikariDataSource = new HikariDataSource(hikariConfig);
     }
     private static HikariDataSource hikariDataSource;
-    public HikariDataSource getDataSource() {
-        return hikariDataSource;
+//    public HikariDataSource getDataSource() {
+//        return hikariDataSource;
+//    }
+    public Connection getConnection() throws SQLException {
+        return hikariDataSource.getConnection();
     }
 }

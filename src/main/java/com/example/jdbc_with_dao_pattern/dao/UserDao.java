@@ -1,4 +1,4 @@
-package com.example.jdbc_with_dao_pattern.service;
+package com.example.jdbc_with_dao_pattern.dao;
 
 import com.example.jdbc_with_dao_pattern.dto.response.UserCreateResponse;
 import com.example.jdbc_with_dao_pattern.dto.response.UserUpdateResponse;
@@ -12,11 +12,7 @@ public interface UserDao {
     User get(String id) throws SQLException;
     List<User> getAll() throws SQLException;
     User update(User user) throws SQLException;
-
     void delete(String id) throws SQLException;
-
-    void bank(String fromUser, String toUser, Long price) throws SQLException;
-
-    UserCreateResponse create(String userName, String password, Long price) throws SQLException;
-    UserUpdateResponse update(String id, String password, Long price ) throws SQLException;
+    boolean existByUserName(String username) throws SQLException;
+    boolean existById(String id) throws SQLException;
 }
