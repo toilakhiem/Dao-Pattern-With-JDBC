@@ -5,11 +5,12 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Data
 @NoArgsConstructor
 public class UserUpdateRequest {
-    @NotBlank
+    @NotNull @NotEmpty
     private String id;
     @NotEmpty
     private String newPassword;

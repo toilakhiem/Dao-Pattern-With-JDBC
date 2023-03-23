@@ -1,7 +1,5 @@
 package com.example.jdbc_with_dao_pattern.dao;
 
-import com.example.jdbc_with_dao_pattern.dto.response.UserCreateResponse;
-import com.example.jdbc_with_dao_pattern.dto.response.UserUpdateResponse;
 import com.example.jdbc_with_dao_pattern.model.User;
 
 import java.sql.SQLException;

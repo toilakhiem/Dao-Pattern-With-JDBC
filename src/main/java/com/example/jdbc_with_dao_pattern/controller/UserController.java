@@ -34,24 +34,25 @@ public class UserController {
         );
     }
 
-//    @GetMapping("/{id}")
-//    public ApiResponse getById(@PathVariable(name = "id") String id) throws SQLException {
-//        return ApiResponse.of(
-//                HttpStatus.OK.value(),
-//                userService.get(id)
-//        );
-//    }
-//
-//    @GetMapping
-//    public ApiResponse getAll() throws SQLException {
-//        return ApiResponse.of(
-//                HttpStatus.OK.value(),
-//                userService.getAll()
-//        );
-//    }
+    @GetMapping("/{id}")
+    public ApiResponse getById(@PathVariable(name = "id") String id) throws SQLException {
+        return ApiResponse.of(
+                HttpStatus.OK.value(),
+                userService.get(id)
+        );
+    }
+
+    @GetMapping
+    public ApiResponse getAllUser() throws SQLException {
+        return ApiResponse.of(
+                HttpStatus.OK.value(),
+                userService.getAll()
+        );
+    }
 
     @DeleteMapping("/{id}")
     public ApiResponse delete(@PathVariable(name = "id") String id) throws SQLException {
+        userService.delete(id);
         return ApiResponse.of(
                 HttpStatus.OK.value()
         );
