@@ -27,7 +27,7 @@ public class UserController {
     }
 
     @PutMapping
-    public ApiResponse update(@RequestBody UserUpdateRequest request) throws SQLException {
+    public ApiResponse update(@RequestBody @Validated UserUpdateRequest request) throws SQLException {
         return ApiResponse.of(
                 HttpStatus.OK.value(),
                 userService.update(request.getId(), request.getNewPassword(), request.getNewPrice())

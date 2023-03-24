@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static com.example.jdbc_with_dao_pattern.constant.JdbcWithDaoPatternConstant.QueryOfMysql.*;
 
@@ -16,7 +17,7 @@ import static com.example.jdbc_with_dao_pattern.constant.JdbcWithDaoPatternConst
 public class UserDaoImpl implements UserDao {
     @Override
     public User save(User user) throws SQLException {
-        User resultUSer = new User();
+        User resultUSer = null;
         String sql = String.format(CREATE_USER, user.getId(), user.getUserName(), user.getPassword(), user.getPrice());
         Connection connection = HikariCPConfiguration.getInstance().getConnection();
         connection.setAutoCommit(false);
@@ -42,14 +43,14 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User get(String id) throws SQLException {
-        User user = new User();
+        User user = null;
         Connection connection = HikariCPConfiguration.getInstance().getConnection();
         log.info("(get) start");
         try {
-            Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.TYPE_SCROLL_SENSITIVE);
+            Statement statement = connection.createStatement();
             String sql = String.format(GET_USER_BY_ID, id);
             ResultSet rs = statement.executeQuery(sql);
-            if (!rs.isBeforeFirst()) {
+            if (!rs.next()) {
                 log.error("(get) not found user has id {}", id);
                 throw new SQLException("Not found");
             } else {
@@ -149,7 +150,7 @@ public class UserDaoImpl implements UserDao {
             log.error("(delete) delete failed", id);
             connection.rollback();
         } finally {
-            if (connection != null) {
+            if (Objects.nonNull(connection)) {
                 connection.setAutoCommit(true); // return auto commit to true
                 connection.close();
             }
