@@ -14,12 +14,13 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.example.jdbc_with_dao_pattern.constant.JdbcWithDaoPatternConstant.HandleException.HANDLE_VALIDATION_EXCEPTION;
+
 @Slf4j
 @ControllerAdvice
 // ten class phai la danh tu
 // ten package cang ngan cang tot
 public class CustomHandleException {
-    private final String HANDLE_VALIDATION_EXCEPTION = "HandleValidationExceptions";
     @ExceptionHandler(BaseException.class)
     public ResponseEntity<ErrorResponse> handleException(BaseException ex){
         log.info("(handleException) ex : {}",ex.getCode());

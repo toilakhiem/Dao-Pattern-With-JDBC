@@ -7,6 +7,8 @@ import javax.validation.Payload;
 import java.lang.annotation.*;
 import java.util.regex.Pattern;
 
+import static com.example.jdbc_with_dao_pattern.constant.JdbcWithDaoPatternConstant.Validation.PASSWORD_REGEX;
+
 @Constraint(validatedBy = ValidatePassword.UserNameValidator.class)
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
@@ -19,7 +21,6 @@ public @interface ValidatePassword {
     Class<? extends Payload>[] payload() default {};
 
     class UserNameValidator implements ConstraintValidator<ValidatePassword, String> {
-        private final String PASSWORD_REGEX = "^(?=.*[0-9])(?=.*[a-z])(?=.*\\W).{6,32}$";
         @Override
         public void initialize(ValidatePassword constraintAnnotation) {
             ConstraintValidator.super.initialize(constraintAnnotation);

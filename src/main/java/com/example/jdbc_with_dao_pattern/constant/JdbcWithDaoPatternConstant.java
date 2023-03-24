@@ -20,9 +20,15 @@ public class JdbcWithDaoPatternConstant {
         public static final String EXIST_BY_ID = "SELECT 1 from users WHERE users.id = '%s' limit 1";
         public static final String FIND_BY_USERNAME = "SELECT * FROM users WHERE users.user_name = '%s'";
     }
-    public static class ExceptionRespoinse{
+    public static class ExceptionResponse{
         public static final String CONFLICT_EXCEPTION_CODE = "Conflict Exception";
         public static final String NOT_FOUND_EXCEPTION_CODE = "Not Found Exception";
         public static final String BAD_REQUEST_EXCEPTION_CODE = "Bad Request Exception";
+    }
+    public static class HandleException{
+        public static final String HANDLE_VALIDATION_EXCEPTION = "HandleValidationExceptions";
+    }
+    public static class Validation{
+        public static final String PASSWORD_REGEX = "^(?=.*[0-9])(?=.*[a-z])(?=.*\\W).{6,32}$";
     }
 }

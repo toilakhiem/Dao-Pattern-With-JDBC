@@ -2,7 +2,6 @@ package com.example.jdbc_with_dao_pattern.dao.impl;
 
 import com.example.jdbc_with_dao_pattern.dao.HikariCPConfiguration;
 import com.example.jdbc_with_dao_pattern.dao.UserDao;
-import com.example.jdbc_with_dao_pattern.exception.ConflictException;
 import com.example.jdbc_with_dao_pattern.model.User;
 import lombok.extern.slf4j.Slf4j;
 
@@ -43,14 +42,14 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User get(String id) throws SQLException {
-        User user = null;
+        User user = new User();
         Connection connection = HikariCPConfiguration.getInstance().getConnection();
         log.info("(get) start");
         try {
             Statement statement = connection.createStatement();
             String sql = String.format(GET_USER_BY_ID, id);
             ResultSet rs = statement.executeQuery(sql);
-            if (!rs.next()) {
+            if (!rs.isBeforeFirst()) {
                 log.error("(get) not found user has id {}", id);
                 throw new SQLException("Not found");
             } else {
@@ -75,10 +74,10 @@ public class UserDaoImpl implements UserDao {
     public List<User> getAll() throws SQLException {
         List<User> resultUser = new ArrayList<>();
         Connection connection = HikariCPConfiguration.getInstance().getConnection();
-        String sql = GET_ALL_USER;
         log.info("(getAll) start");
         try {
             Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.TYPE_SCROLL_SENSITIVE);
+            String sql = GET_ALL_USER;
             ResultSet rs = statement.executeQuery(sql);
             if (!rs.isBeforeFirst()) {
                 log.error("(get) not found any user");

@@ -1,6 +1,5 @@
 package com.example.jdbc_with_dao_pattern.controller;
 
-import com.example.jdbc_with_dao_pattern.dao.UserDao;
 import com.example.jdbc_with_dao_pattern.dto.request.CreateUserRequest;
 import com.example.jdbc_with_dao_pattern.dto.request.UserUpdateRequest;
 import com.example.jdbc_with_dao_pattern.dto.response.Base.ApiResponse;
