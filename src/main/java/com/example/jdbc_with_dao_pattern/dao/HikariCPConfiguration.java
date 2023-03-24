@@ -10,7 +10,7 @@ import static com.example.jdbc_with_dao_pattern.constant.JdbcWithDaoPatternConst
 
 public class  HikariCPConfiguration {
     //region Singleton
-    // static global HiakriCPDataSource
+    // static global HikariCPConfiguration
     private static HikariCPConfiguration instance = new HikariCPConfiguration();
     //private constructor
     private HikariCPConfiguration() {
@@ -37,9 +37,6 @@ public class  HikariCPConfiguration {
         hikariDataSource = new HikariDataSource(hikariConfig);
     }
     private static HikariDataSource hikariDataSource;
-//    public HikariDataSource getDataSource() {
-//        return hikariDataSource;
-//    }
     public Connection getConnection() throws SQLException {
         return hikariDataSource.getConnection();
     }

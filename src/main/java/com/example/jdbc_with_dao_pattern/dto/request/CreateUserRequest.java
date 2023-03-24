@@ -13,7 +13,5 @@ public class CreateUserRequest {
     private String username;
     @ValidatePassword
     private String password;
-
-
-    private long price;
+    private Long price;
 }

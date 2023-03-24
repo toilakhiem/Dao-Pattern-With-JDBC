@@ -34,7 +34,7 @@ public class UserDaoImpl implements UserDao {
             connection.rollback();
         } finally {
             if (connection != null) {
-                connection.setAutoCommit(true); // return auto commit to true
+                connection.setAutoCommit(true);
                 connection.close();
             }
         }
@@ -64,7 +64,7 @@ public class UserDaoImpl implements UserDao {
             log.info("(get) successfully");
         } finally {
             if (connection != null) {
-                connection.setAutoCommit(true); // return auto commit to true
+                connection.setAutoCommit(true);
                 connection.close();
             }
         }
@@ -96,7 +96,7 @@ public class UserDaoImpl implements UserDao {
             log.info("(getAll) successfully");
         } finally {
             if (connection != null) {
-                connection.setAutoCommit(true); // return auto commit to true
+                connection.setAutoCommit(true);
                 connection.close();
             }
         }
@@ -124,7 +124,7 @@ public class UserDaoImpl implements UserDao {
             log.error("(update) update user has id {} failed", user.getId());
         } finally {
             if (connection != null) {
-                connection.setAutoCommit(true); // return auto commit to true
+                connection.setAutoCommit(true);
                 connection.close();
             }
         }
@@ -151,7 +151,7 @@ public class UserDaoImpl implements UserDao {
             connection.rollback();
         } finally {
             if (Objects.nonNull(connection)) {
-                connection.setAutoCommit(true); // return auto commit to true
+                connection.setAutoCommit(true);
                 connection.close();
             }
         }
@@ -175,7 +175,7 @@ public class UserDaoImpl implements UserDao {
             connection.rollback();
         } finally {
             if (connection != null) {
-                connection.setAutoCommit(true); // return auto commit to true
+                connection.setAutoCommit(true);
                 connection.close();
             }
         }
@@ -199,7 +199,7 @@ public class UserDaoImpl implements UserDao {
             connection.rollback();
         } finally {
             if (connection != null) {
-                connection.setAutoCommit(true); // return auto commit to true
+                connection.setAutoCommit(true);
                 connection.close();
             }
         }
